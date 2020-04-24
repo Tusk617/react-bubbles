@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
   // make a post request to retrieve a token from the api
@@ -7,8 +8,16 @@ const Login = () => {
 
     username: '',
     password: ''
-    
+
   })
+
+  const handleInput = event => {
+    setCredentials({
+      ...credentials,
+      [event.target.name]: event.target.value
+    })
+  }
+
   return (
     <>
       <h1>Welcome to the Bubble App!</h1>
@@ -16,11 +25,16 @@ const Login = () => {
         <input 
           type="text"
           placeholder="Username:"
+          name="username"
+          value={credentials.username}
+          onChange={handleInput}
         /><br/>
         <input 
           type="password"
           placeholder="password"
-        
+          name="password"
+          value={credentials.password}
+          onChange={handleInput}
         />
       </form>
     </>
